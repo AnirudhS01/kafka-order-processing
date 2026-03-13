@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
-import orderapp.routes as order_routes
+import app.routes as order_routes
 
 
 app = FastAPI()

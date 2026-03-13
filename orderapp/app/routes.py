@@ -1,9 +1,9 @@
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import JSONResponse
-from orderapp.models import Order
+from app.models import Order
 import json
 from confluent_kafka import Producer
-from orderapp.utils import delivery_report
+from app.utils import delivery_report
 
 router = APIRouter()
 
@@ -11,7 +11,7 @@ router = APIRouter()
 def post_order(order: Order):
     try:
         #configuration for producer to listen to kafka broker at 9092 as mentioned in the docker compose env
-        producer_config = {"bootstrap.servers":"localhost:9092"}
+        producer_config = {"bootstrap.servers":"kafka:9092"}
         producer = Producer(producer_config)
 
         #convert the request to json and encode into bytes as required by kafka
